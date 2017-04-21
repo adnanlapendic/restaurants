@@ -1,28 +1,16 @@
-New log file opened at Mon Apr 10 12:44:53 CEST 2017 by 8234@dell
-Taking next connection to: 45142
-New client attempting to connect on port: 45328-45142
-  Address = /127.0.0.1:45142
-This client on port 45328 has uuid cf31b5f2-ab3b-4eda-ab6f-7aafb7bb92a5 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
-Connected Clients: activator-cf31b5f2-ab3b-4eda-ab6f-7aafb7bb92a5
-Taking next connection to: 45142
-New client attempting to connect on port: 45330-45142
-  Address = /127.0.0.1:45142
-Handshake exception on socket: 45330
-sbt.impl.ipc.HandshakeException: Unable to perform handshake
-	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
-	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
-	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
-Caused by: java.io.EOFException
-	at java.io.DataInputStream.readInt(DataInputStream.java:392)
-	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
-	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
-	... 2 more
-Taking next connection to: 45142
-New client attempting to connect on port: 45332-45142
-  Address = /127.0.0.1:45142
-This client on port 45332 has uuid 8ec974d0-94bf-4c5f-adda-ba1fd0081c77 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
-Connected Clients: activator-cf31b5f2-ab3b-4eda-ab6f-7aafb7bb92a5, activator-8ec974d0-94bf-4c5f-adda-ba1fd0081c77
-Taking next connection to: 45142
+New log file opened at Thu Apr 20 15:45:14 CEST 2017 by 3224@dell
+Taking next connection to: 42134
+New client attempting to connect on port: 57198-42134
+  Address = /127.0.0.1:42134
+This client on port 57198 has uuid bc5793d0-9f76-4fe6-b654-43c4be8e33cd configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-bc5793d0-9f76-4fe6-b654-43c4be8e33cd
+Taking next connection to: 42134
 Checking to see if clients are empty...
 We have 1 non-daemon clients, continuing serving connections.
-Taking next connection to: 45142
+Taking next connection to: 42134
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+Server socket thread exiting.
+0 clients open, will close them...
+All client sockets have been closed.
+Closing the 3224@dell logs at Thu Apr 20 15:51:15 CEST 2017, goodbye.

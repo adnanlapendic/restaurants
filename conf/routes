@@ -11,3 +11,9 @@ GET     /message                    controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+
+#API
+GET     /api/v1/restaurant             @controllers.RestaurantsController.getAllRestaurants
+POST    /api/v1/login                  @controllers.UserController.validateUser
+POST    /api/v1/register               @controllers.UserController.registerNewUser
