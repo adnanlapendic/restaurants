@@ -17,3 +17,5 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 GET     /api/v1/restaurant             @controllers.RestaurantsController.getAllRestaurants
 POST    /api/v1/login                  @controllers.UserController.validateUser
 POST    /api/v1/register               @controllers.UserController.registerNewUser
+GET     /api/v1/getRestaurantsLocations @controllers.RestaurantsController.getPopularLocations
+POST    /api/v1/getRestaurantDetails   @controllers.RestaurantsController.getRestaurantDetails
