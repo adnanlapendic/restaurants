@@ -1,0 +1,36 @@
+<div class="image">
+
+</div>
+
+<div class="make-free-reserv">
+  <p>Make a free reservation</p>
+  <h4>Choose your table from ???? reastaurants near you</h4>
+</div>
+<div class="search-table-home">
+{{!-- {{search-table}} --}}
+</div>
+
+
+{{!-- Restaurants --}}
+
+{{!-- <div class="search-table-restaurants">
+{{search-table}}
+</div> --}}
+
+<div class="restaurants-page">
+
+  <h1 class="text-center">Restaurants</h1>
+
+
+      {{#each model as |restaurant|}}
+
+        {{restaurant-component restaurant=restaurant}}
+
+      {{/each}}
+</div>
+
+{{restaurant-locations}}
+
+
+
+{{outlet}}

@@ -1,0 +1,11 @@
+<div class="container-login">
+
+  <form class="form-login">
+    <h3 class="form-signin-heading">Login</h3>
+    {{#link-to 'create-account' class="create-account-link" }}Create account{{/link-to}}
+      {{input value=email type="email" class="form-control" placeholder="Email" required="" autofocus=""}}
+      {{input value=password type="password" class="form-control" placeholder="Password" required=""}}
+    <button class="btn btn-lg btn-primary btn-block" type="submit" {{action 'authenticate'}}>Sign in</button>
+  </form>
+
+</div>

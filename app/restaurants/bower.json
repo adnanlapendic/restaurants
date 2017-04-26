@@ -1,0 +1,7 @@
+{
+  "name": "restaurants",
+  "dependencies": {
+    "bootstrap-datepicker": "^1.6.4",
+    "gmaps-for-apps": "^0.5.15"
+  }
+}
