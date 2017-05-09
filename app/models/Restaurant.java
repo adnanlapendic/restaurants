@@ -3,18 +3,26 @@ package models;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.jpa.HibernateEntityManager;
 import play.Logger;
 import play.data.Form;
 import play.db.jpa.JPA;
+import play.libs.Json;
+import play.mvc.Result;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lapa on 4/11/17.
  */
+
 @Entity
 public class Restaurant {
 
@@ -23,25 +31,38 @@ public class Restaurant {
 
     @Id
     @GeneratedValue
+    @Column(name="id")
     private int id;
 
+    @Column(name="name")
     private String name;
 
+    @Column(name="description")
     private String description;
 
+    @Column(name="city")
     private String city;
 
+    @Column(name="address")
     private String address;
 
+    @Column(name="cousine")
     private String cousine;
 
+    @Column(name="image")
     private String image;
 
+    @Column(name="coverimage")
     private String coverImage;
 
+    @Column(name="latitude")
     private String latitude;
 
+    @Column(name="longitude")
     private String longitude;
+
+    @OneToMany(mappedBy = "restaurantId")
+    private List<RestaurantTable> tables;
 
 
     public int getId() {
@@ -124,23 +145,39 @@ public class Restaurant {
         this.longitude = longitude;
     }
 
+    public List<RestaurantTable> getTables() {
+        return tables;
+    }
+
+    public void setTables(List<RestaurantTable> tables) {
+        this.tables = tables;
+    }
+
     public static Criteria getCriteria(){
 
         Session session = ((HibernateEntityManager) JPA.em()).getSession();
         return session.createCriteria(Restaurant.class);
     }
 
-    public static List getRestaurants(){
+    public static List<Restaurant> getRestaurants(){
         List<Restaurant> restaurants = getCriteria().list();
+
+//        getCriteria().add(Projections.count("city"), "count");
+//        getCriteria().setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP);
 
         return restaurants;
     }
 
     public static Restaurant getRestaurantById(int id) {
-        Logger.info("-------------------------------------------------------");
         Restaurant restaurant = (Restaurant) getCriteria().add(Restrictions.eq("id", id)).uniqueResult();
-
         return restaurant;
+    }
+
+    public static List<RestaurantTable> getRestaurantTables(Restaurant restaurant) {
+
+        List<RestaurantTable> tables =  getCriteria().add(Restrictions.eq("restaurantId", restaurant.getId())).list();
+
+        return tables;
     }
 
 }

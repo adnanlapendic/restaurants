@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+
   userService: Ember.inject.service('user-service'),
+  session: Ember.inject.service('session'),
 
   firstName: null,
   lastName: null,
@@ -9,19 +11,29 @@ export default Ember.Controller.extend({
   phone: null,
   password: null,
   confirmPassword: null,
+  notification: null,
 
   actions: {
-
     register() {
-
-      var firstName = this.get('firstName');
-      var lastName = this.get('lastName');
-      var email = this.get('email');
-      var phone = this.get('phone');
-      var password = this.get('password');
-      var confirmPassword = this.get('confirmPassword');
-
-      this.get('userService').registerNewUser(firstName, lastName, email, phone, password);
+      let {
+        firstName,
+        lastName,
+        email,
+        phone,
+        password,
+        confirmPassword
+      } =
+      this.getProperties('firstName', 'lastName', 'email', 'phone', 'password', 'confirmPassword');
+      this.get('userService').registerNewUser(firstName, lastName, email, phone, password, confirmPassword)
+        .then(() => {
+          this.transitionToRoute('home');
+        })
+        .fail((response) => {
+          console.log(response);
+        })
+        .catch((response) => {
+          this.set('notification', response);
+        });
 
     },
   },

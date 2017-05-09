@@ -1,3 +1,4 @@
+
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
@@ -15,7 +16,10 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 #API
 GET     /api/v1/restaurant             @controllers.RestaurantsController.getAllRestaurants
-POST    /api/v1/login                  @controllers.UserController.validateUser
+POST    /api/v1/login                  @controllers.UserController.login
 POST    /api/v1/register               @controllers.UserController.registerNewUser
-GET     /api/v1/getRestaurantsLocations @controllers.RestaurantsController.getPopularLocations
+GET     /api/v1/getRestaurantsLocations @controllers.RestaurantsController.getNumberOfRestaurantsPerCity
 POST    /api/v1/getRestaurantDetails   @controllers.RestaurantsController.getRestaurantDetails
+GET     /api/v1/currentUser            @controllers.UserController.getCurrentUser
+GET     /api/v1/logout                 @controllers.UserController.clearSession
+POST    /api/v1/checkForReservation    @controllers.ReservationController.checkForTable

@@ -1,36 +1,34 @@
-<div class="image">
+{{application-navbar classNames="navbar-white"}}
+<div class="home-page">
+  <div class="image">
 
-</div>
+  </div>
 
-<div class="make-free-reserv">
-  <p>Make a free reservation</p>
-  <h4>Choose your table from ???? reastaurants near you</h4>
-</div>
-<div class="search-table-home">
-{{!-- {{search-table}} --}}
-</div>
-
-
-{{!-- Restaurants --}}
-
-{{!-- <div class="search-table-restaurants">
-{{search-table}}
-</div> --}}
+  <div class="make-free-reserv">
+    <p>Make a free reservation</p>
+    <h4>Choose your table from reastaurants near you</h4>
+  </div>
 
 <div class="restaurants-page">
 
   <h1 class="text-center">Restaurants</h1>
-
-
-      {{#each model as |restaurant|}}
+    <div>
+      {{#each model.restaurants as |restaurant|}}
 
         {{restaurant-component restaurant=restaurant}}
 
       {{/each}}
+    </div>
+      <div class="locations">
+        <div class="restaurant-locations">
+          <h1 class="text-center">Restaurant locations</h1>
+          {{#each model.locations as |location|}}
+          <div class="restaurant-locationss">
+            <h3>{{location.city}}</h3>
+            <p width="auto">Restaurants: {{location.count}}</p>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
 </div>
-
-{{restaurant-locations}}
-
-
-
-{{outlet}}

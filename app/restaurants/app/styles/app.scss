@@ -1,41 +1,70 @@
 @import "bootstrap";
+@import "ember-power-select";
 
-.image {
-  background: url('http://www.pdcdc.org/wp-content/uploads/2016/03/restaurant-939435_960_720.jpg') no-repeat center center;
-  background-size: cover;
-  width: 100%;
-  height: 680px;
-
-  //  opacity: 0.5;
-}
 
 .app-name {
   float: left;
   // display: inline-flex;
   position: absolute;
-  color: #656565;
+  color: #FFFFFF;
   top: 20/px;
   left: 50px;
 }
 
-.links {
-  position: absolute;
-  float: right;
-  display: inline-flex;
-  top: 30px;
-  right: 10%;
+.image {
+  background-color: #000000;
+  background: url('http://res.cloudinary.com/doqnakvit/image/upload/v1494081147/restaurants_gnf8hf.jpg') no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: 580px;
 
-  .link-to {
-    font-size: 20px;
+}
+
+.navbar-white{
+  .links {
+    position: absolute;
+    float: right;
     display: inline-flex;
-    color: #656565;
-    padding-right: 20px;
+    top: 30px;
+    right: 10%;
+
+      .link-to {
+        font-size: 20px;
+        display: inline-flex;
+        color: #FFFFFF;
+        padding-right: 20px;
+      }
+      .link-to:hover {
+        color: #FF6F00;
+      }
+
+  }
+}
+.navbar-black{
+  .app-name{
+    color: #000000;
+  }
+  .links {
+    position: absolute;
+    float: right;
+    display: inline-flex;
+    top: 30px;
+    right: 10%;
+
+      .link-to {
+        font-size: 20px;
+        display: inline-flex;
+        color: #000000;
+        padding-right: 20px;
+      }
+      .link-to:hover {
+        color: #FF6F00;
+      }
+
   }
 }
 
-.link-to:hover {
-  color: #FF6F00;
-}
+
 
 .make-free-reserv {
   position: absolute;
@@ -54,9 +83,9 @@
 
 .container-login{
   padding-top: 10%;
-padding-left: 35%;
-padding-right: 35%;
-padding-bottom: 20%;
+padding-left: 33%;
+padding-right: 33%;
+padding-bottom: 30%;
 
 .form-signin-heading {
   display: inline;
@@ -73,9 +102,9 @@ padding-bottom: 20%;
 
 }
 
-.create-account-link {
+.pull-right {
   color: #FF6F00;
-  padding-left: 50%;
+  // padding-left: 50%;
   font-size: 20px;
 }
 }
@@ -101,26 +130,38 @@ padding-bottom: 20%;
   padding-left: 40px;
 }
 
+.btn.btn-primary:hover{
+  background-color: #FF6F00;
+  color: #FFFFFF;
+}
+
 .restaurants-page {
+  padding-top: 5%;
   padding-left: 15%;
   padding-right: 10%;
+  padding-bottom: 10%;
 }
 
 .search {
+  width: auto;
+  // display: block;
   .row {
-    display: inline;
+    // display: inline;
     padding-left: 40px;
   }
 
   .form-control {
-    height: 40px;
+    height: 50px;
     margin-bottom: 20px;
   }
+
 
   .col-md-2 {
     padding-left: 0;
     padding-right: 0;
-    width: auto;
+    width: 180px;
+    height: 60px;
+    // display: inline;
   }
 
   .col-md-4 {
@@ -131,8 +172,8 @@ padding-bottom: 20%;
 
   .btn.btn-primary {
     background: #FF6F00;
-    width: auto;
-    height: 40px;
+    width: 150px;
+    height: 50px;
   }
 }
 
@@ -147,7 +188,7 @@ padding-bottom: 20%;
   left: 20%;
 }
 
-.container {
+.container-footer {
 
   background-color: #131d24;
   height:100px;
@@ -160,13 +201,20 @@ padding-bottom: 20%;
     margin-right: 10px;
 
   }
-}
 
+  // p{
+  //   display: inline-flex;
+  // }
+
+  h5{
+    display: inline;
+  }
   .row-copyright {
     background-color: #131d24;
-
     display: inline;
-    float: left;
+
+    // display: inline;
+    // float: left;
   }
 
   .row-footer-links {
@@ -175,9 +223,12 @@ padding-bottom: 20%;
     display: inline;
     float: right;
   }
+}
+
+
 
   .restaurant-cover-image{
-    background: url('http://www.pdcdc.org/wp-content/uploads/2016/03/restaurant-939435_960_720.jpg') no-repeat center center;
+    background: url('http://res.cloudinary.com/doqnakvit/image/upload/v1494081147/restaurants_gnf8hf.jpg') no-repeat center center;
     background-size: cover;
     height: 400px;
 
@@ -190,6 +241,7 @@ padding-bottom: 20%;
   }
 
   .restaurant-details {
+    color: #FFFFFF;
     position: absolute;
     padding-left: 550px;
     padding-top: 280px;
@@ -204,27 +256,121 @@ padding-bottom: 20%;
       padding-top: 150px;
     }
 
+    .reservation-block {
+      padding-top: 100px;
+
+      .only-reservation{
+        padding-left: 150px;
+      }
+    }
+
     .right-restaurant-details {
-        padding-top: 200px;
-        padding-left: 100px;
+      padding-top: 64px;
+      padding-left: 150px;
+      width: 30%;
+
+      .google-map{
+        padding-top: 50px;
+        h3 {
+          padding-bottom: 50px;
+          width: 300px;
+
+        }
+      }
 
         .description{
           p {
             width: 700px;
+            padding-top: 10px;
+            padding-bottom: 50px;
           }
         }
-        .google-map {
 
-        padding-bottom: 45px;
-
-          h3 {
-            padding-bottom: 20px;
-          }
-        }
     }
   }
+
+  .col-md-offset-1 {
+    margin-left: -268px;
+}
+
+.restaurant-locationss{
+display: inline-block;
+padding-left: 10%;
+
+  p{
+    width: 100px;
+    margin-left: 1px;
+  }
+}
 
   .map-canvas {
     height: 250px;
     width: 700px;
+}
+.panel-default{
+
+h4{
+  padding-left: 10px;
+  margin-top: 10px;
+}
+p{
+  padding-left: 10px;
+}
+
+.col-md-2 {
+  padding-left: 1px;
+}
+
+  .btn.btn-default {
+    color: #FFFFFF;
+    background: #FF6F00;
+    margin: 5px;
+  }
+}
+.complete-reservation-div{
+  padding-top: 10%;
+  .panel.panel-default {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 2%;
+    .panel-body{
+
+      .reservation-details{
+        padding-left: 15px;
+      }
+              .reservation-information{
+                display:inline-flex;
+
+                .reservation-restaurant-image{
+                  width: 250px;
+                  height: 200px;
+
+              }
+    }
+  }
+}
+.guest-date-time {
+  padding-top: 50px;
+  padding-left: 100px;
+  width: auto;
+  display: inline-flex;
+  .guests {
+    padding-left: 30px;
+    padding-right: 60px;
+    .people{
+      padding-left: 15px;
+    }
+  }
+}
+
+.restaurant-name{
+    padding-left: 50px;
+    h3{
+      color: #FF6F00;
+      padding-left: 10px;
+    }
+}
+}
+.ember-power-select-trigger {
+  height: 50px;
 }

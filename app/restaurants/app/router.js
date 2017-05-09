@@ -13,10 +13,17 @@ Router.map(function() {
     });
   });
   this.route('login');
-  this.route('home');
-  this.route('create-account');
+  this.route('home', {
+    path: '/'
+  });
+  this.route('create-account', {
+    path: 'register'
+  });
   this.route('restaurantDetails', {
     path: 'restaurant/:id'
+  });
+  this.route('complete-reservation', {
+    path: 'reservation'
   });
 });
 

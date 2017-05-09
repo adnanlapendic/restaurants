@@ -30,10 +30,26 @@ module.exports = function(environment) {
     'style-src': "'self' 'unsafe-inline' https://*.googleapis.com"
   }
 
-  ENV.googleMap = {
-    apiKey: 'AIzaSyD_nU0M-kjUgYH0xjlSts0Ow-efbGxE-mI'
+  ENV['ember-basic-dropdown'] = {
+    destination: '<id-of-destination-element>'
   }
 
+  ENV.googleMap = {
+    apiKey: 'AIzaSyDn_Ky9YSJErjRegXQ0qrltq6g8tetc8Dw'
+  }
+  ENV.apiHost = "http://localhost:9000";
+  ENV['ember-simple-auth'] = {
+    authorizer: 'authorizer:token',
+    baseURL: ''
+  };
+  ENV['ember-simple-auth-token'] = {
+    refreshAccessTokens: false,
+    authorizer: 'authorizer:token',
+    identificationField: 'email',
+    serverTokenEndpoint: ''
+  };
+  ENV['ember-simple-auth'].baseURL = ENV.apiHost;
+  ENV['ember-simple-auth-token'].serverTokenEndpoint = `${ENV.apiHost}/api/v1/login`;
 
 
 

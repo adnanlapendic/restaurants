@@ -2,25 +2,28 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
 
+  currentUser: null,
 
   login(email, password) {
-    Ember.$.ajax({
+    return Ember.$.ajax({
       url: "/api/v1/login",
       type: "POST",
       data: {
         email: email,
         password: password
       },
-    }).then(function(resp) {
-      alert("Login sucsessful");
-    }).catch(function(error) {
-      alert("invalid username or password")
+      xhrFields: {
+        withCredentials: true
+      },
+    }).then(function(response) {
+      return response;
     });
+
   },
 
 
-  registerNewUser(firstName, lastName, email, phone, password) {
-    Ember.$.ajax({
+  registerNewUser(firstName, lastName, email, phone, password, confirmPassword) {
+    return Ember.$.ajax({
       url: "/api/v1/register",
       type: "POST",
       data: {
@@ -28,12 +31,37 @@ export default Ember.Service.extend({
         lastName: lastName,
         email: email,
         phone: phone,
-        password: password
+        password: password,
+        confirmPassword: confirmPassword
       },
-    }).then(function(resp) {
-      alert("Register sucsessful");
-    }).catch(function(error) {
-      alert("ERROR ERROR ERROR")
+      xhrFields: {
+        withCredentials: true
+      },
+    }).then(function(response) {
+      return response;
     });
   },
+
+  getCurrentUser() {
+    return Ember.$.ajax({
+      url: '/api/v1/currentUser',
+      method: 'GET',
+      contentType: "application/json",
+      type: "json",
+    }).then(function(user) {
+      return user;
+    });
+  },
+
+  logout() {
+    return Ember.$.ajax({
+      url: '/api/v1/logout',
+      method: 'GET',
+      contentType: "application/json",
+      type: "json",
+    }).then(function(data) {
+      return data;
+    });
+  },
+
 });

@@ -1,11 +1,14 @@
 
+
+{{application-navbar classNames="navbar-white"}}
+
 <div class-="restaurant-details-container">
   <div class="restaurant-cover-image">
     <div class="restaurant-details">
-        <h2>{{model.name}}</h2>
-        <h4>{{model.cousine}}</h4>
+        <h2>{{model.restaurant.name}}</h2>
+        <h4>{{model.restaurant.cousine}}</h4>
     </div>
-    <img src={{model.image}} class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+    <img src={{model.restaurant.image}} class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
   </div>
 </div>
 
@@ -16,17 +19,25 @@
       <h3>Menu</h3>
       <h3>Photos</h3>
   </div>
-
+<div class="reservation-block">
+  <div class="only-reservation">
+    <h3>Make a free reservation</h3>
+  {{table-reservation restaurant=model.restaurant}}
+</div>
   <div class="right-restaurant-details">
     <div class="google-map">
-      <h3>About {{model.name}}</h3>
-      {{google-map latitude="{{model.latitude}}" longitude="{{model.longitude}}"}}
+      <h3>About {{model.restaurant.name}}</h3>
+      {{!-- {{google-map}} --}}
+      {{google-map latitude="{{model.restaurant.latitude}}" longitude="{{model.restaurant.longitude}}"}}
     </div>
       <div class="description">
-        <p>{{model.description}}</p>
+        <div>
+          <h4 style="margin-top:50px;">Description</h4>
+        </div >
+        <p>{{model.restaurant.description}}</p>
       </div>
     </div>
-
+</div>
   </div>
-  
+
 {{outlet}}

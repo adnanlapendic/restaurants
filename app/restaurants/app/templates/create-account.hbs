@@ -1,15 +1,26 @@
+{{application-navbar classNames="navbar-black"}}
 
 <div class="container-login">
 
   <form class="form-login">
-    <h3 class="form-signin-heading">Create account</h3>
-    {{#link-to 'login' class="create-account-link" }}Login{{/link-to}}
+    {{!-- <div class="create-account-header"> --}}
+      <h3 class="form-signin-heading">Create account</h3>
+      {{#link-to 'login' class="pull-right" }}Login{{/link-to}}
+    {{!-- </div> --}}
       {{input value=firstName type="text" class="form-control" placeholder="First Name" required="" autofocus=""}}
       {{input value=lastName type="text" class="form-control" placeholder="Last Name" required=""}}
       {{input value=email type="email" class="form-control" placeholder="Email" required=""}}
       {{input value=phone type="text" class="form-control" placeholder="Phone Number" required=""}}
       {{input value=password type="password" class="form-control" placeholder="Password" required=""}}
       {{input value=confirmPassword type="password" class="form-control" placeholder="Confirm Password" required=""}}
+      <div class="notification-message">
+        {{log notification}}
+        {{#if notification}}
+        <div class="alert alert-danger">
+          <h5><strong>Error!</strong>{{notification.message}}</h5>
+        </div>
+        {{/if}}
+      </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit" {{action 'register'}}>Create Account</button>
   </form>
 

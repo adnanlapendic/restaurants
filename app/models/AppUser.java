@@ -5,6 +5,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.jpa.HibernateEntityManager;
+import play.Logger;
 import play.data.Form;
 import play.db.jpa.JPA;
 
@@ -17,11 +18,9 @@ import javax.persistence.Entity;
  */
 
 @Entity
-//@Table(appliesTo = "app_user")
 public class AppUser {
 
     public static Form<AppUser> userForm = Form.form(AppUser.class);
-
 
     @Id
     @GeneratedValue
@@ -42,6 +41,19 @@ public class AppUser {
 
     private String password;
 
+    private String confirmPassword;
+
+    private String token;
+
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public int getId() {
         return id;
@@ -107,6 +119,21 @@ public class AppUser {
         this.password = password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public static Session getSession(){
         Session session = ((HibernateEntityManager) JPA.em()).getSession();
@@ -127,12 +154,26 @@ public class AppUser {
     }
 
 
-    public static AppUser saveUser(AppUser user){
-        getSession().persist(user);
-        getSession().flush();
-        return user;
-    }
+//    public static AppUser saveUser(AppUser user){
+//        getSession().persist(user);
+//        getSession().flush();
+//        return user;
+//    }
 
+    public static AppUser authenticate(String email, String password) {
+
+        AppUser user = (AppUser) getCriteria().add(Restrictions.eq("email", email)).uniqueResult();
+
+        if(user != null && user.getPassword().equals(password)){
+
+            return user;
+
+        } else {
+
+            return null;
+        }
+
+    }
 
 
 

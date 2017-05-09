@@ -1,0 +1,65 @@
+<div class="search">
+            <form role="form">
+              <div class="col-md-2">
+                <div class="form-group">
+
+                  {{#power-select
+                    options=people
+                    destination="customized-destination"
+                    selected=name123
+                    onchange=(action (mut name123))
+                    as |people|
+                  }}
+                     {{people}} People
+                  {{/power-select}}
+                  <div id="customized-destination"></div>
+
+            </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="input-group-date">
+                    {{input class="form-control" type="date" value=date required="required" min=today}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  {{input class="form-control" type="time" value=time required="required" min=openTime max=closeTime}}
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-primary" type="submit" {{action 'checkForTable'}}>Find a table</button>
+              </div>
+            </form>
+          </div>
+          {{#if haveResponse}}
+            {{!-- {{reservation-response reservationResponse=reservationResponse }} --}}
+            <div class="panel-default">
+              <br>
+              <h4>Availability on {{reservationResponse.date}} around {{reservationResponse.bestTime.[1]}} for {{reservationResponse.people}} people:</h4>
+              <p clas="glyphicon glyphicon-info-sign">{{model.tablesLeft}} tables left</p>
+
+              <br>
+              <h4>Select the best time that fits you:</h4>
+                <div class="col-md-2">
+                  {{#link-to 'complete-reservation'}}
+                    <button class="btn btn-default" type="submit" {{action 'checkForTable'}}>{{model.bestTime.[0]}}</button>
+                  {{/link-to}}    </div>
+                  <div class="col-md-2">
+                    {{#link-to 'complete-reservation'}}
+                      <button class="btn btn-default" type="submit" {{action 'checkForTable'}}>{{reservationResponse.bestTime.[1]}}</button>
+                    {{/link-to}}      </div>
+                  <div class="col-md-2">
+                    {{#link-to 'complete-reservation' }}
+                      <button class="btn btn-default" type="submit" {{action 'checkForTable'}}>{{reservationResponse.bestTime.[2]}}</button>
+                    {{/link-to}}
+                  </div>
+                  <div class="col-md-2">
+                    {{#link-to 'complete-reservation' }}
+                      <button class="btn btn-default" type="submit" {{action 'checkForTable'}}>Time</button>
+                    {{/link-to}}      </div>
+            </div>
+
+          {{/if}}
+{{yield}}

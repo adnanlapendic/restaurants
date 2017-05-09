@@ -1,19 +1,34 @@
-import Ember from 'ember';
+ import Ember from 'ember';
 
-export default Ember.Controller.extend({
+ export default Ember.Controller.extend({
 
-  userService: Ember.inject.service('user-service'),
+   userService: Ember.inject.service('user-service'),
+   session: Ember.inject.service('session'),
 
-  email: null,
-  password: null,
+   email: null,
+   password: null,
+   notification: null,
 
-  actions: {
-    authenticate() {
+   actions: {
+     login() {
+       let {
+         email,
+         password
+       } = this.getProperties('email', 'password');
+       this.get('session').authenticate('authenticator:oauth2', email, password)
+         .then(() => {
+           this.transitionToRoute('home');
+           this.set('email', "");
+           this.set('password', "");
+           this.set('notification', "");
+         })
+         .catch((response) => {
+           this.set('notification', response);
+           this.set('email', "");
+           this.set('password', "");
+         })
 
-      var email = this.get('email');
-      var password = this.get('password');
+     },
 
-      this.get('userService').login(email, password);
-    },
-  },
-});
+   },
+ });

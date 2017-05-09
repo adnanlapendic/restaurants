@@ -1,0 +1,34 @@
+{{application-navbar classNames="navbar-black"}}
+<div class="complete-reservation-div">
+<h2 class="text-center">Complete your reservation.</h2>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="reservation-details">
+      <h3 style="margin-top:0px;">Reservation Details</h3>
+    </div>
+    <div class="reservation-information">
+      <img class="reservation-restaurant-image" src={{model.restaurantImage}}/>
+      <div class="restaurant-name">
+        <h4>RESTAURANT</h4>
+        <h3>{{model.restaurantName}}</h3>
+        <div class="guest-date-time">
+          <div class="guests">
+            <h4>GUESTS</h4>
+            <h5 class="people"><strong>{{model.people}}</strong> People</h5>
+
+          </div>
+          <div class="guests">
+            <h4>DATE</h4>
+            <h5><strong>{{model.date}}</strong></h5>
+
+          </div>
+          <div class="guests">
+            <h4>TIME</h4>
+            <h5><strong>{{model.bestTime.[0]}}</strong></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

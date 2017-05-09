@@ -2,6 +2,7 @@
   "name": "restaurants",
   "dependencies": {
     "bootstrap-datepicker": "^1.6.4",
-    "gmaps-for-apps": "^0.5.15"
+    "gmaps-for-apps": "^0.5.15",
+    "ember-bootstrap-datetimepicker": "^0.0.3"
   }
 }
