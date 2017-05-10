@@ -16,5 +16,6 @@ libraryDependencies ++= Seq(
   javaWs
 )
 
+libraryDependencies += evolutions
 fork in run := false
 PlayKeys.externalizeResources := false
