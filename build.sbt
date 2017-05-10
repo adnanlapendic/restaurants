@@ -7,13 +7,13 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava)
 scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-  javaJpa,
-  "org.hibernate" % "hibernate-entitymanager" % "5.1.0.Final",
-  "org.postgresql" % "postgresql" % "9.4-1206-jdbc42",
-  "com.auth0" % "java-jwt" % "3.1.0",
   javaJdbc,
   cache,
-  javaWs
+  javaWs,
+    javaJpa,
+  "org.hibernate" % "hibernate-entitymanager" % "5.1.0.Final",
+  "org.postgresql" % "postgresql" % "9.4-1206-jdbc42",
+  "com.auth0" % "java-jwt" % "3.1.0"
 )
 
 libraryDependencies += evolutions
