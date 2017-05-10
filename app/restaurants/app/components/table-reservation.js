@@ -26,11 +26,6 @@ export default Ember.Component.extend({
       this.get('restaurantService').checkReservationAvailability(people, date, time, idRestaurant)
         .then(() => {
           this.set('haveResponse', true);
-
-
-          var respons = this.get('restaurantService').checkReservationAvailability();
-          debugger
-          this.set('restaurantService.reservationResponse', this.get('restaurantService').checkReservationAvailability(people, date, time, idRestaurant))
         })
         .catch((response) => {
           this.set('notification', response);
