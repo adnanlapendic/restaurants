@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/restaurants -Dhttp.port=${PORT} -Dplay.evolutions.db.default.autoApply=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=${DATABASE_URL} -Ddb.default.username=${DATABASE_USER} -Ddb.default.password=${DATABASE_PW} -Dplay.crypto.secret=${APPLICATION_SECRET}
+web: target/universal/stage/bin/play-java -Dhttp.port=$PORT -Dconfig.resource=prod.conf
