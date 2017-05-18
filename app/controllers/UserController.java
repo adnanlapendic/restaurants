@@ -63,7 +63,7 @@ public class UserController extends Controller {
         AppUser user = boundForm.bindFromRequest().get();
 
         if (boundForm.hasErrors()) {
-            return null;
+            return badRequest(Response.errorResponse(boundForm.toString()));
         }
 
         if (!user.getPassword().equals(user.getConfirmPassword())) {
