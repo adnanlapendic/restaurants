@@ -27,8 +27,15 @@ export default Ember.Controller.extend({
       this.get('userService').registerNewUser(firstName, lastName, email, phone, password, confirmPassword)
         .then(() => {
           this.transitionToRoute('home');
+          this.set('firstName', "");
+          this.set('lastName', "");
+          this.set('email', "");
+          this.set('phone', "");
+          this.set('password', "");
+          this.set('confirmPassword', "");
         })
         .fail((response) => {
+          // this.set('notification', response);
           console.log(response);
         })
         .catch((response) => {

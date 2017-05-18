@@ -8,7 +8,7 @@ export default Ember.Route.extend({
   model() {
     return Ember.RSVP.hash({
       restaurants: this.get('restaurantService').getAllRestaurants(),
-      user: this.get('userService').getCurrentUser(),
+      // user: this.get('userService').getCurrentUser(),
       locations: this.get('restaurantService').getRestaurantLocations()
     });
   },
