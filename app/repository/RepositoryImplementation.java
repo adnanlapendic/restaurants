@@ -12,11 +12,6 @@ import play.db.jpa.JPA;
 public class RepositoryImplementation<T> implements Repository<T> {
 
     @Override
-    public T findById(Long id) {
-        return null;
-    }
-
-    @Override
     public T create(T model) {
         JPA.em().persist(model);
         JPA.em().flush();
@@ -35,11 +30,5 @@ public class RepositoryImplementation<T> implements Repository<T> {
         JPA.em().persist(model);
         JPA.em().flush();
     }
-
-//    @Override
-//    public Criteria getCriteria() {
-//        Session session = ((HibernateEntityManager) JPA.em()).getSession();
-//        return session.createCriteria(Class<T>);
-//    }
 
 }

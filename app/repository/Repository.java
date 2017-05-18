@@ -8,13 +8,10 @@ import org.hibernate.Criteria;
  */
 public interface Repository<T> {
 
-    T findById(Long id);
-
     T create(T model);
 
     T update(T model);
 
     void delete(T model);
 
-//    Criteria getCriteria();
 }

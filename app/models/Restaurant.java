@@ -153,32 +153,6 @@ public class Restaurant {
         this.tables = tables;
     }
 
-    public static Criteria getCriteria(){
-
-        Session session = ((HibernateEntityManager) JPA.em()).getSession();
-        return session.createCriteria(Restaurant.class);
-    }
-
-    public static List<Restaurant> getRestaurants(){
-        List<Restaurant> restaurants = getCriteria().list();
-
-//        getCriteria().add(Projections.count("city"), "count");
-//        getCriteria().setResultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP);
-
-        return restaurants;
-    }
-
-    public static Restaurant getRestaurantById(int id) {
-        Restaurant restaurant = (Restaurant) getCriteria().add(Restrictions.eq("id", id)).uniqueResult();
-        return restaurant;
-    }
-
-    public static List<RestaurantTable> getRestaurantTables(Restaurant restaurant) {
-
-        List<RestaurantTable> tables =  getCriteria().add(Restrictions.eq("restaurantId", restaurant.getId())).list();
-
-        return tables;
-    }
 
 }
 
