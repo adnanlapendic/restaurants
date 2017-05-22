@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.jpa.HibernateEntityManager;
 import play.db.jpa.JPA;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 /**
@@ -13,15 +14,9 @@ import java.util.List;
  */
 public class RepositoryImplementation<T> implements Repository<T> {
 
-    public Class<T> entityClass;
-
-    @Inject
-    public RepositoryImplementation(Class<T> entityClass) {
-        this.entityClass = entityClass;
-    }
 
     private Class<T> getEntityClass() {
-        return this.entityClass;
+        return (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     @Override

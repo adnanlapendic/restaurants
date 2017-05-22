@@ -25,9 +25,6 @@ public class AppUser {
 
     public static Form<AppUser> userForm = Form.form(AppUser.class);
 
-    @Inject
-    public AppUser() {}
-
     @Id
     @GeneratedValue
     private Long id;

@@ -25,12 +25,6 @@ public class RestaurantService implements BaseService{
         this.restaurantRepository = restaurantRepository;
     }
 
-//    @Override
-//    public Criteria getCriteria() {
-//        Session session = ((HibernateEntityManager) JPA.em()).getSession();
-//
-//        return session.createCriteria(Restaurant.class);
-//    }
 
     public List<Restaurant> getRestaurants(){
         List<Restaurant> restaurants = restaurantRepository.findAll();

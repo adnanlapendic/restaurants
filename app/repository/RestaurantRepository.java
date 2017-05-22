@@ -18,26 +18,7 @@ import java.util.Map;
 /**
  * Created by lapa on 5/6/17.
  */
-//@ImplementedBy(RestaurantRepositoryImplementation.class)
 public class RestaurantRepository extends RepositoryImplementation<Restaurant> {
-
-    @Inject
-    public RestaurantRepository(Class<Restaurant> entityClass) {
-        super(entityClass);
-    }
-
-//    public static Criteria getCriteria(){
-//
-//        Session session = ((HibernateEntityManager) JPA.em()).getSession();
-//        return session.createCriteria(Restaurant.class);
-//    }
-
-
-//    public Restaurant findB(int id) {
-//        Restaurant restaurant = (Restaurant) getCriteria().add(Restrictions.eq("id", id)).uniqueResult();
-//
-//        return restaurant;
-//    }
 
     public List<RestaurantTable> getRestaurantTables(Restaurant restaurant) {
 

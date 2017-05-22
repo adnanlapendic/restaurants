@@ -29,8 +29,6 @@ public class Restaurant {
 
     public static Form<Restaurant> restaurantForm = Form.form(Restaurant.class);
 
-    @Inject
-    public Restaurant() {}
 
     @Id
     @GeneratedValue
