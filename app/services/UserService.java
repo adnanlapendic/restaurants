@@ -47,13 +47,6 @@ public class UserService implements BaseService {
         this.userRepository = userRepository;
     }
 
-    @Override
-    public Criteria getCriteria() {
-        Session session = ((HibernateEntityManager) JPA.em()).getSession();
-
-        return session.createCriteria(AppUser.class);
-    }
-
 
     public AppUser getCurrentUser() {
         Http.Context ctx = Http.Context.current();
@@ -103,7 +96,7 @@ public class UserService implements BaseService {
 
     public AppUser authenticate(String email, String password) {
 
-        AppUser user = (AppUser) getCriteria().add(Restrictions.eq("email", email)).uniqueResult();
+        AppUser user = (AppUser) userRepository.getCriteria().add(Restrictions.eq("email", email)).uniqueResult();
 
         if (user != null && user.getPassword().equals(password)) {
 

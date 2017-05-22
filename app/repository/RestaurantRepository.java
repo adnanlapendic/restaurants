@@ -1,6 +1,7 @@
 package repository;
 
 import com.google.inject.ImplementedBy;
+import com.google.inject.Inject;
 import models.Restaurant;
 import models.RestaurantTable;
 import org.hibernate.Criteria;
@@ -9,7 +10,10 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.jpa.HibernateEntityManager;
 import play.db.jpa.JPA;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lapa on 5/6/17.
@@ -17,24 +21,44 @@ import java.util.List;
 //@ImplementedBy(RestaurantRepositoryImplementation.class)
 public class RestaurantRepository extends RepositoryImplementation<Restaurant> {
 
-        public static Criteria getCriteria(){
-
-        Session session = ((HibernateEntityManager) JPA.em()).getSession();
-        return session.createCriteria(Restaurant.class);
+    @Inject
+    public RestaurantRepository(Class<Restaurant> entityClass) {
+        super(entityClass);
     }
 
+//    public static Criteria getCriteria(){
+//
+//        Session session = ((HibernateEntityManager) JPA.em()).getSession();
+//        return session.createCriteria(Restaurant.class);
+//    }
 
-    public Restaurant findRestaurantById(int id) {
-        Restaurant restaurant = (Restaurant) getCriteria().add(Restrictions.eq("id", id)).uniqueResult();
 
-        return restaurant;
-    }
+//    public Restaurant findB(int id) {
+//        Restaurant restaurant = (Restaurant) getCriteria().add(Restrictions.eq("id", id)).uniqueResult();
+//
+//        return restaurant;
+//    }
 
     public List<RestaurantTable> getRestaurantTables(Restaurant restaurant) {
 
         List<RestaurantTable> tables =  getCriteria().add(Restrictions.eq("restaurantId", restaurant.getId())).list();
 
         return tables;
+    }
+
+    public List<Object> getRestaurantsPerCity() {
+
+        List<Object[]> obj = JPA.em().createQuery("select count(r.city) as count, r.city from Restaurant as r group BY r.city").getResultList();
+
+        List<Object> oo = new ArrayList<>();
+        for (Object[] o : obj) {
+            Map<String, String> map = new HashMap<>();
+            map.put("city", o[1].toString());
+            map.put("count", o[0].toString());
+            oo.add(map);
+        }
+
+        return oo;
     }
 
 }

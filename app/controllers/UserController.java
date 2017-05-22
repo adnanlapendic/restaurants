@@ -45,6 +45,10 @@ public class UserController extends Controller {
 
         Form<Login> boundForm = Login.loginForm.bindFromRequest();
 
+        if(boundForm.hasErrors()) {
+            return badRequest(Response.errorResponse("All fields are required."));
+        }
+
         AppUser user = userService.findUserByEmail(boundForm.get().getUsername());
 
         if (user == null) {

@@ -1,6 +1,7 @@
 package models;
 
 import play.data.Form;
+import play.data.validation.Constraints;
 
 /**
  * Created by lapa on 5/18/17.
@@ -9,8 +10,10 @@ public class Login {
 
     public static Form<Login> loginForm = Form.form(Login.class);
 
+    @Constraints.Required
     private String email;
 
+    @Constraints.Required
     private String password;
 
     private String username;

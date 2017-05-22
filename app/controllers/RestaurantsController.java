@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Response;
 import models.Restaurant;
 import play.data.Form;
 import play.db.jpa.Transactional;
@@ -46,7 +47,7 @@ public class RestaurantsController extends Controller {
         if(restaurant != null) {
             return ok(Json.toJson(restaurant));
         }else {
-            return badRequest();
+            return badRequest(Response.errorResponse("Can't load selected restaurant."));
         }
     }
 

@@ -1,6 +1,7 @@
 package models;
 
 
+import com.google.inject.Inject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.CriteriaSpecification;
@@ -28,11 +29,13 @@ public class Restaurant {
 
     public static Form<Restaurant> restaurantForm = Form.form(Restaurant.class);
 
+    @Inject
+    public Restaurant() {}
 
     @Id
     @GeneratedValue
     @Column(name="id")
-    private int id;
+    private Long id;
 
     @Column(name="name")
     private String name;
@@ -65,11 +68,11 @@ public class Restaurant {
     private List<RestaurantTable> tables;
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

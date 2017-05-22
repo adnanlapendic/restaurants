@@ -7,6 +7,4 @@ import org.hibernate.Criteria;
  */
 public interface BaseService {
 
-        Criteria getCriteria();
-
 }

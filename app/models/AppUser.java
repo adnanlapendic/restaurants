@@ -1,6 +1,7 @@
 package models;
 
 
+import com.google.inject.Inject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -9,6 +10,7 @@ import play.Logger;
 import play.data.Form;
 import play.data.validation.Constraints;
 import play.db.jpa.JPA;
+import scala.App;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -23,9 +25,12 @@ public class AppUser {
 
     public static Form<AppUser> userForm = Form.form(AppUser.class);
 
+    @Inject
+    public AppUser() {}
+
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @Column(unique = true)
     @Constraints.Required
@@ -64,11 +69,11 @@ public class AppUser {
         this.username = username;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

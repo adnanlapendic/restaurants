@@ -25,37 +25,27 @@ public class RestaurantService implements BaseService{
         this.restaurantRepository = restaurantRepository;
     }
 
-    @Override
-    public Criteria getCriteria() {
-        Session session = ((HibernateEntityManager) JPA.em()).getSession();
-
-        return session.createCriteria(Restaurant.class);
-    }
+//    @Override
+//    public Criteria getCriteria() {
+//        Session session = ((HibernateEntityManager) JPA.em()).getSession();
+//
+//        return session.createCriteria(Restaurant.class);
+//    }
 
     public List<Restaurant> getRestaurants(){
-        List<Restaurant> restaurants = getCriteria().list();
+        List<Restaurant> restaurants = restaurantRepository.findAll();
 
         return restaurants;
     }
 
     public List<Object> getRestaurantsPerCity() {
 
-        List<Object[]> obj = JPA.em().createQuery("select count(r.city) as count, r.city from Restaurant as r group BY r.city").getResultList();
-
-        List<Object> oo = new ArrayList<>();
-        for (Object[] o : obj) {
-            Map<String, String> map = new HashMap<>();
-            map.put("city", o[1].toString());
-            map.put("count", o[0].toString());
-            oo.add(map);
-        }
-
-        return oo;
+        return restaurantRepository.getRestaurantsPerCity();
     }
 
-    public Restaurant getRestaurantDetails(int restaurantId) {
+    public Restaurant getRestaurantDetails(Long restaurantId) {
 
-        Restaurant restaurant = restaurantRepository.findRestaurantById(restaurantId);
+        Restaurant restaurant = restaurantRepository.findById(restaurantId);
 
         return  restaurant;
     }
