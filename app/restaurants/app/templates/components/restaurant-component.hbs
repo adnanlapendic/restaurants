@@ -1,11 +1,11 @@
 {{#link-to 'restaurantDetails' restaurant.id}}
 
-<div class="row">
+<div class="row" style="height:500px;">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <img class="restaurant-image" src={{restaurant.image}} alt="...">
+      <img class="restaurant-image" src={{restaurant.image}} alt="..." style="height:200px;">
       <div class="caption">
-        <h3>Name: {{restaurant.name}}</h3>
+        <h3>{{restaurant.name}}</h3>
         <p>Cousine: {{restaurant.cousine}}</p>
         <button href="#" class="btn btn-primary">Reserve now</button>
       </div>

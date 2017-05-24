@@ -1,67 +1,53 @@
 package controllers;
 
+import models.Response;
 import models.Restaurant;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.criterion.ProjectionList;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Property;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.jpa.HibernateEntityManager;
-import org.hibernate.transform.Transformers;
-import play.Logger;
-import play.db.jpa.JPA;
+import play.data.Form;
 import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.RestaurantService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.inject.Inject;
 
 /**
  * Created by lapa on 4/11/17.
  */
 public class RestaurantsController extends Controller {
 
-    @Transactional()
-    public Result getAllRestaurants(){
-        List<Restaurant> restaurants = Restaurant.getRestaurants();
-        return ok(Json.toJson(restaurants));
+    private RestaurantService restaurantService;
+
+    @Inject
+    public void setRestaurantService(RestaurantService restaurantService) {
+        this.restaurantService = restaurantService;
     }
 
+
+    @Transactional()
+    public Result getAllRestaurants(){
+
+        return ok(Json.toJson(restaurantService.getRestaurants()));
+    }
 
 
     @Transactional(readOnly = true)
     public Result getNumberOfRestaurantsPerCity () {
 
-
-        List<Object[]> obj = JPA.em().createQuery("select count(r.city) as count, r.city from Restaurant as r group BY r.city").getResultList();
-
-
-        List<Object> oo = new ArrayList<>();
-        for (Object[] o : obj) {
-            Map<String, String> map = new HashMap<>();
-            map.put("city", o[1].toString());
-            map.put("count", o[0].toString());
-            oo.add(map);
-        }
-
-        return ok(Json.toJson(oo));
+        return ok(Json.toJson(restaurantService.getRestaurantsPerCity()));
     }
 
     @Transactional
     public Result getRestaurantDetails(){
-        int restaurantId = Restaurant.restaurantForm.bindFromRequest().get().getId();
 
-        Restaurant restaurant = Restaurant.getRestaurantById(restaurantId);
+        Form<Restaurant> boundForm = Restaurant.restaurantForm.bindFromRequest();
+
+        Restaurant restaurant = restaurantService.getRestaurantDetails(boundForm.get().getId());
 
         if(restaurant != null) {
             return ok(Json.toJson(restaurant));
         }else {
-            return badRequest();
+            return badRequest(Response.errorResponse("Can't load selected restaurant."));
         }
     }
 

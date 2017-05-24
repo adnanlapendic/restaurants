@@ -3,6 +3,8 @@ package repository;
 import models.AppUser;
 import org.hibernate.Criteria;
 
+import java.util.List;
+
 /**
  * Created by lapa on 5/6/17.
  */
@@ -16,5 +18,6 @@ public interface Repository<T> {
 
     void delete(T model);
 
-//    Criteria getCriteria();
+    List<T> findAll();
+
 }
