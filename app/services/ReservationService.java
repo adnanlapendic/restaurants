@@ -52,14 +52,7 @@ public class ReservationService implements BaseService {
                 bool = true;
             }
         }
-            Logger.info("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + bool);
         return bool;
-
-//        Logger.info("-------------------------------" + !reservations.contains(selectedTimeAndDate));
-//        Logger.info("-------------------------------" + !reservations.contains(selectedTimeAndDate + HALF_HOUR));
-//        Logger.info("-------------------------------" + !reservations.contains(selectedTimeAndDate + HOUR));
-//        return !reservations.contains(selectedTimeAndDate) && !reservations.contains(selectedTimeAndDate + HALF_HOUR) &&
-//                !reservations.contains(selectedTimeAndDate + HOUR);
 
     }
 
@@ -74,15 +67,15 @@ public class ReservationService implements BaseService {
         List<Reservation> reservations = reservationRepository.getAllReservationsOnSelectedDate(date, tables);
 
 
-//        if(reservations.size() == 0){
-//            return getFirstReservation(dateAndTime);
-//        } else {
-//            for (RestaurantTable table: tables) {
-//                if(!reservations.contains(table)){
-//                    return getFirstReservation(dateAndTime);
-//                }
-//            }
-//        }
+        if(reservations.size() == 0){
+            return getFirstReservation(dateAndTime);
+        } else {
+            for (RestaurantTable table: tables) {
+                if(!reservations.contains(table)){
+                    return getFirstReservation(dateAndTime);
+                }
+            }
+        }
 
         Long timeToCheckUp = dateAndTime;
         Long timeToCheckDown = dateAndTime;
@@ -90,8 +83,6 @@ public class ReservationService implements BaseService {
 
         while (bestTime.size() < 4) {
             loopBreaker++;
-            Logger.info("###############################" + timeToCheckUp);
-            Logger.info("*******************************" + timeToCheckDown);
             if (timeToCheckUp != null) {
                 if (hasFreeTables(reservations, timeToCheckUp)) {
                     Date date2 = new Date(timeToCheckUp);
