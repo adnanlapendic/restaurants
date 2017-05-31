@@ -41,10 +41,10 @@ export default Ember.Service.extend({
 
   checkReservationAvailability(people, date, time, restaurantId) {
     return Ember.$.ajax({
-      url: "/api/v1/checkForReservation",
+      url: "/api/v1/checkReservationAvailability",
       method: "POST",
       data: {
-        people: people,
+        numberOfPeople: people,
         date: date,
         time: time,
         restaurantId: restaurantId

@@ -42,7 +42,7 @@ public class RestaurantsController extends Controller {
 
         Form<Restaurant> boundForm = Restaurant.restaurantForm.bindFromRequest();
 
-        Restaurant restaurant = restaurantService.getRestaurantDetails(boundForm.get().getId());
+        Restaurant restaurant = restaurantService.getRestaurantById(boundForm.get().getId());
 
         if(restaurant != null) {
             return ok(Json.toJson(restaurant));

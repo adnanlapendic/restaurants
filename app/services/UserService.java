@@ -2,6 +2,7 @@ package services;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.google.inject.Singleton;
 import models.AppUser;
 import models.Login;
 import models.Response;
@@ -96,7 +97,7 @@ public class UserService implements BaseService {
 
     public AppUser authenticate(String email, String password) {
 
-        AppUser user = (AppUser) userRepository.getCriteria().add(Restrictions.eq("email", email)).uniqueResult();
+        AppUser user = (AppUser) userRepository.getCriteria(AppUser.class).add(Restrictions.eq("email", email)).uniqueResult();
 
         if (user != null && user.getPassword().equals(password)) {
 

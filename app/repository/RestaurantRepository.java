@@ -22,7 +22,7 @@ public class RestaurantRepository extends RepositoryImplementation<Restaurant> {
 
     public List<RestaurantTable> getRestaurantTables(Restaurant restaurant) {
 
-        List<RestaurantTable> tables =  getCriteria().add(Restrictions.eq("restaurantId", restaurant.getId())).list();
+        List<RestaurantTable> tables =  getCriteria(RestaurantTable.class).add(Restrictions.eq("restaurantId", restaurant.getId())).list();
 
         return tables;
     }

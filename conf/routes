@@ -22,4 +22,4 @@ GET     /api/v1/getRestaurantsLocations @controllers.RestaurantsController.getNu
 POST    /api/v1/getRestaurantDetails   @controllers.RestaurantsController.getRestaurantDetails
 GET     /api/v1/currentUser            @controllers.UserController.getCurrentUser
 GET     /api/v1/logout                 @controllers.UserController.clearSession
-POST    /api/v1/checkForReservation    @controllers.ReservationController.checkForTable
+POST    /api/v1/checkReservationAvailability    @controllers.ReservationController.checkForTable

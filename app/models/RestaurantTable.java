@@ -23,28 +23,27 @@ public class RestaurantTable {
     @Id
     @GeneratedValue
     @Column(name="id")
-    private Integer id;
+    private Long id;
 
     @Column(name="restaurant_id")
-    private Integer restaurantId;
+    private Long restaurantId;
 
     @Column(name="num_of_chairs")
     private Integer numberOfChairs;
 
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getRestaurantId() {
+    public Long getRestaurantId() {
         return restaurantId;
     }
 
-    public void setRestaurantId(Integer restaurantId) {
+    public void setRestaurantId(Long restaurantId) {
         this.restaurantId = restaurantId;
     }
 
@@ -56,21 +55,4 @@ public class RestaurantTable {
         this.numberOfChairs = numberOfChairs;
     }
 
-
-    public static Session getSession(){
-        Session session = ((HibernateEntityManager) JPA.em()).getSession();
-        return session;
-    }
-
-
-    public static Criteria getCriteria(){
-        Session session = getSession();
-        return session.createCriteria(RestaurantTable.class);
-    }
-
-    public static List<RestaurantTable> getTables(int restaurantId, int numberOfPeople) {
-       List<RestaurantTable> tables = getCriteria().add(Restrictions.eq("restaurantId", restaurantId))
-               .add(Restrictions.ge("numberOfChairs", numberOfPeople)).list();
-       return tables;
-    }
 }

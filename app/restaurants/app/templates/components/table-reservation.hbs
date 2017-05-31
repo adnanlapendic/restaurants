@@ -25,8 +25,15 @@
               </div>
               <div class="col-md-2">
                 <div class="form-group">
-                  {{input class="form-control" type="time" value=time required="required" min=openTime max=closeTime}}
-                </div>
+                  {{#power-select
+                    options=time
+                    destination="customized-destination"
+                    selected=time123
+                    onchange=(action (mut time123))
+                    as |time|
+                  }}
+                     {{time}}
+                  {{/power-select}}                </div>
               </div>
               <div class="col-md-2">
                 <button class="btn btn-primary" type="submit" {{action 'checkForTable'}}>Find a table</button>
