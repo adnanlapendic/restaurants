@@ -31,6 +31,7 @@ import static play.mvc.Results.unauthorized;
 /**
  * Created by lapa on 5/17/17.
  */
+@Singleton
 public class UserService implements BaseService {
 
     private UserRepository userRepository;
@@ -97,7 +98,7 @@ public class UserService implements BaseService {
 
     public AppUser authenticate(String email, String password) {
 
-        AppUser user = (AppUser) userRepository.getCriteria(AppUser.class).add(Restrictions.eq("email", email)).uniqueResult();
+        AppUser user = (AppUser) userRepository.getCriteria().add(Restrictions.eq("email", email)).uniqueResult();
 
         if (user != null && user.getPassword().equals(password)) {
 

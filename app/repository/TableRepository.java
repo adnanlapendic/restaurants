@@ -10,11 +10,12 @@ import java.util.List;
  */
 public class TableRepository extends RepositoryImplementation<RestaurantTable> {
 
-    public List<RestaurantTable> getTables(Long restaurantId, int numberOfPeople) {
-        List<RestaurantTable> tables = getCriteria(RestaurantTable.class).add(Restrictions.eq("restaurantId", restaurantId))
-                .add(Restrictions.ge("numberOfChairs", numberOfPeople))
-                .add(Restrictions.ge("isReserved", false)).list();
-        return tables;
+    public List getTablesForSelectedNumberOfPeople(Long restaurantId, int numberOfPeople) {
+
+        return getCriteria()
+                .add(Restrictions.eq("restaurantId", restaurantId))
+                .add(Restrictions.ge("numberOfChairs", numberOfPeople)).list();
+
     }
 
 

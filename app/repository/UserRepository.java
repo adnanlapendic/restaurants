@@ -10,7 +10,7 @@ import org.hibernate.criterion.Restrictions;
 public class UserRepository extends RepositoryImplementation<AppUser> {
 
     public AppUser findUserByEmail(String email) {
-        AppUser user = (AppUser) getCriteria(AppUser.class).add(Restrictions.eq("email", email)).uniqueResult();
+        AppUser user = (AppUser) getCriteria().add(Restrictions.eq("email", email)).uniqueResult();
         return user;
     }
 

@@ -16,25 +16,12 @@ import java.util.List;
 public class ReservationRepository extends RepositoryImplementation<Reservation> {
 
 
-    public Restaurant findReservatedRestaurantById(Long id) {
-
-        return JPA.em().find(Restaurant.class, id);
-    }
-
     public List getAllReservationsOnSelectedDate(String date, List tables) {
 
-        return getCriteria(Reservation.class)
+        return getCriteria()
                 .add(Restrictions.eq("date", date))
                 .add(Restrictions.in("table", tables))
                 .addOrder( Order.asc("reservationsStart") ).list();
-    }
-
-    public List getTablesForSelectedNumberOfPeople(Long restaurantId, int numberOfPeople) {
-
-        return getCriteria(RestaurantTable.class)
-                .add(Restrictions.eq("restaurantId", restaurantId))
-                .add(Restrictions.ge("numberOfChairs", numberOfPeople)).list();
-
     }
 
 

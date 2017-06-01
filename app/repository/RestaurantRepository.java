@@ -20,13 +20,6 @@ import java.util.Map;
  */
 public class RestaurantRepository extends RepositoryImplementation<Restaurant> {
 
-    public List<RestaurantTable> getRestaurantTables(Restaurant restaurant) {
-
-        List<RestaurantTable> tables =  getCriteria(RestaurantTable.class).add(Restrictions.eq("restaurantId", restaurant.getId())).list();
-
-        return tables;
-    }
-
     public List<Object> getRestaurantsPerCity() {
 
         List<Object[]> obj = JPA.em().createQuery("select count(r.city) as count, r.city from Restaurant as r group BY r.city").getResultList();

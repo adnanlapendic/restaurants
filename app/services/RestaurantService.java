@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * Created by lapa on 5/17/17.
  */
+@Singleton
 public class RestaurantService implements BaseService{
 
     private RestaurantRepository restaurantRepository;
@@ -22,7 +23,7 @@ public class RestaurantService implements BaseService{
 
 
     public List<Restaurant> getRestaurants(){
-        List<Restaurant> restaurants = restaurantRepository.findAll(Restaurant.class);
+        List<Restaurant> restaurants = restaurantRepository.findAll();
 
         return restaurants;
     }
@@ -33,7 +34,6 @@ public class RestaurantService implements BaseService{
     }
 
     public Restaurant getRestaurantById(Long restaurantId) {
-        Logger.info("11111111111111111111111111111111" + restaurantId);
         return restaurantRepository.findById(restaurantId);
     }
 

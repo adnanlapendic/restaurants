@@ -35,27 +35,19 @@ public class ReservationController extends Controller {
 
 
     @Transactional(readOnly = true)
-    public Result checkForTable() {
+    public Result checkForTable(Long restaurantId) {
 
         Form<Reservation> boundForm = Reservation.reservationForm.bindFromRequest();
 
-    Long restaurantId = Long.valueOf(boundForm.bindFromRequest().field("restaurantId").value());
-    Restaurant restaurant = reservationService.getRestaurantById(restaurantId);
-    String restaurantName = restaurant.getName();
-    String restaurantImage = restaurant.getImage();
-    int people = boundForm.get().getNumberOfPeople();
-    int numOfFreeTables = reservationService.getTablesForSelectedNumberOfPeople(restaurantId, people).size();
-    String date = boundForm.get().getDate();
-    String time = boundForm.get().getTime();
-        Timestamp timestamp = Timestamp.valueOf(date + " " + time + ":00.0");
-        Long timestamp2 = timestamp.getTime();
-        if(timestamp2 < System.currentTimeMillis()){
+        Restaurant restaurant = reservationService.getRestaurantById(restaurantId);
+        Reservation reservation = boundForm.get();
+
+        ReservationResponse reservationResponse = reservationService.getReservation(restaurant, reservation);
+        Long timestamp = reservationResponse.getDate().getTime();
+
+        if (timestamp < System.currentTimeMillis()) {
             return badRequest(Response.errorResponse("Can't make reservation for past time."));
         }
-
-        List<String> bestTimes = reservationService.getBestTimes(date, timestamp2, restaurantId, people);
-
-        ReservationResponse reservationResponse = new ReservationResponse(numOfFreeTables,bestTimes,restaurantId,restaurantName, restaurantImage,timestamp,people,time);
 
         return ok(Json.toJson(reservationResponse));
 

@@ -44,13 +44,13 @@ public class RepositoryImplementation<T> implements Repository<T> {
         JPA.em().flush();
     }
 
-    public Criteria getCriteria(Class c) {
+    public Criteria getCriteria() {
         Session session = ((HibernateEntityManager) JPA.em()).getSession();
-        return session.createCriteria(c);
+        return session.createCriteria(getEntityClass());
     }
 
-    public List<T> findAll(Class c) {
-        return getCriteria(c).list();
+    public List<T> findAll() {
+        return getCriteria().list();
     }
 
 }
