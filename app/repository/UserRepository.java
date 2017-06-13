@@ -14,4 +14,9 @@ public class UserRepository extends RepositoryImplementation<AppUser> {
         return user;
     }
 
+    public AppUser findUserByToken(String token) {
+        AppUser user = (AppUser) getCriteria().add(Restrictions.eq("token", token)).uniqueResult();
+        return user;
+    }
+
 }

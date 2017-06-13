@@ -52,11 +52,11 @@ public class UserService implements BaseService {
 
     public AppUser getCurrentUser() {
         Http.Context ctx = Http.Context.current();
-        String email = ctx.session().get("email");
+        String token = "dca14341-9035-43f7-8b0b-2f3fa8f52110";
         AppUser user = null;
 
-        if (email != null) {
-            user = userRepository.findUserByEmail(email);
+        if (token != null) {
+            user = userRepository.findUserByToken(token);
         }
         if (user == null) {
             return null;

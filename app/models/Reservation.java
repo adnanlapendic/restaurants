@@ -33,16 +33,16 @@ public class Reservation {
     private AppUser user;
 
     @Transient
-    private int numberOfPeople;
+    private int number_of_people;
 
     @Transient
     private String time;
 
     private String date;
 
-    private Long reservationsStart;
+    private Long reservations_start;
 
-    private Long reservationEnds;
+    private Long reservation_ends;
 
     private boolean isReserved;
 
@@ -79,19 +79,19 @@ public class Reservation {
     }
 
     public Long getReservationsStart() {
-        return reservationsStart;
+        return reservations_start;
     }
 
     public void setReservationsStart(Long reservationsStart) {
-        this.reservationsStart = reservationsStart;
+        this.reservations_start = reservationsStart;
     }
 
     public Long getReservationEnds() {
-        return reservationEnds;
+        return reservation_ends;
     }
 
     public void setReservationEnds(Long reservationEnds) {
-        this.reservationEnds = reservationEnds;
+        this.reservation_ends = reservationEnds;
     }
 
     public boolean isReserved() {
@@ -103,11 +103,11 @@ public class Reservation {
     }
 
     public int getNumberOfPeople() {
-        return numberOfPeople;
+        return number_of_people;
     }
 
     public void setNumberOfPeople(int numberOfPeople) {
-        this.numberOfPeople = numberOfPeople;
+        this.number_of_people = numberOfPeople;
     }
 
     public String getTime() {

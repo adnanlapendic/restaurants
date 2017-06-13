@@ -10,12 +10,12 @@ public class Login {
 
     public static Form<Login> loginForm = Form.form(Login.class);
 
-    @Constraints.Required
     private String email;
 
     @Constraints.Required
     private String password;
 
+    @Constraints.Required
     private String username;
 
     public String getEmail() {

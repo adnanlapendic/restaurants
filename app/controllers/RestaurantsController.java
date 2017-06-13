@@ -51,11 +51,5 @@ public class RestaurantsController extends Controller {
         }
     }
 
-    @Transactional
-    public Result makeReservation(){
-
-
-        return ok();
-    }
 
 }

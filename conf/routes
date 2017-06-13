@@ -23,3 +23,6 @@ POST    /api/v1/getRestaurantDetails         @controllers.RestaurantsController.
 GET     /api/v1/currentUser                  @controllers.UserController.getCurrentUser
 GET     /api/v1/logout                       @controllers.UserController.clearSession
 POST    /api/v1/restaurants/:id/checkReservationAvailability    @controllers.ReservationController.checkForTable(id: Long)
+POST    /api/v1/restaurants/:id/makeReservation              @controllers.ReservationController.makeReservation(id: Long)
+GET     /api/v1/getListOfReservationsForUser @controllers.ReservationController.getListOfReservationsForUser
+GET     /api/v1/getFreeTables                @controllers.ReservationController.getFreeTables

@@ -55,6 +55,8 @@ public class UserController extends Controller {
             return unauthorized(Response.errorResponse("Invalid username or password."));
         }
 
+        ctx().session().put("token", user.getToken());
+
         return ok(Json.newObject().put("access_token", userService.getToken(user)));
 
     }

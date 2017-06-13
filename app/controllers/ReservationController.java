@@ -1,9 +1,6 @@
 package controllers;
 
-import models.Reservation;
-import models.ReservationResponse;
-import models.Response;
-import models.Restaurant;
+import models.*;
 import play.Logger;
 import play.data.Form;
 import play.db.jpa.Transactional;
@@ -33,7 +30,6 @@ public class ReservationController extends Controller {
         this.reservationService = reservationService;
     }
 
-
     @Transactional(readOnly = true)
     public Result checkForTable(Long restaurantId) {
 
@@ -51,6 +47,42 @@ public class ReservationController extends Controller {
 
         return ok(Json.toJson(reservationResponse));
 
+    }
+
+    @Transactional
+    public Result makeReservation(Long restaurantId) {
+
+        Form<Reservation> boundForm = Reservation.reservationForm.bindFromRequest();
+        Restaurant restaurant = reservationService.getRestaurantById(restaurantId);
+        Reservation reservation = boundForm.get();
+
+        if (boundForm.hasErrors()){
+            return badRequest();
+        }
+
+        Reservation reservationToSave = reservationService.saveNewReservation(restaurant, reservation);
+        ReservationResponseTwo reservationResponse = reservationService.getResponse(reservationToSave);
+
+        return ok(Json.toJson(reservationResponse));
+
+    }
+
+    @Transactional(readOnly = true)
+    public Result getListOfReservationsForUser() {
+        return ok(Json.toJson(reservationService.getReservationsForUser()));
+    }
+
+    @Transactional(readOnly = true)
+    public Result getFreeTables() {
+
+        Form<Reservation> boundForm = Reservation.reservationForm.bindFromRequest();
+
+        List restaurants = reservationService.getAllRestaurants();
+        Reservation reservation = boundForm.get();
+
+        List listOfRestaurantsWithFreeTables = reservationService.getAllRestaurantsWithFreeTables(restaurants, reservation);
+
+        return ok(Json.toJson(listOfRestaurantsWithFreeTables));
     }
 
 }

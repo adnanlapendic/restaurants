@@ -2,6 +2,7 @@ package services;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import models.Restaurant;
 import models.RestaurantTable;
 import repository.TableRepository;
 
@@ -18,6 +19,14 @@ public class TableService implements BaseService {
     @Inject
     public void setTableRepository(TableRepository tableRepository) {
         this.tableRepository = tableRepository;
+    }
+
+    public List getTablesForSelectedPeople(Long restaurantId, int numOfPople) {
+        return tableRepository.getTablesForSelectedNumberOfPeople(restaurantId, numOfPople);
+    }
+
+    public RestaurantTable findTableById(Long id) {
+        return tableRepository.findById(id);
     }
 
 }

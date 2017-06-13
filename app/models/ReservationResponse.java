@@ -17,25 +17,23 @@ public class ReservationResponse {
 
     private int tablesLeft;
     private List<String> bestTime;
-    private Long restaurantId;
-    private String restaurantName;
-    private String restaurantImage;
+    private Restaurant restaurant;
     private Timestamp date;
     private int people;
     private String time;
 
-    public ReservationResponse(int tablesLeft, List<String> bestTime, Long restaurantId, String restaurantName, String restaurantImage, Timestamp date, int people, String time) {
+    public ReservationResponse(int tablesLeft, List<String> bestTime, Timestamp date, int people, String time, Restaurant restaurant) {
         this.tablesLeft = tablesLeft;
         this.bestTime = bestTime;
-        this.restaurantId = restaurantId;
-        this.restaurantName = restaurantName;
-        this.restaurantImage = restaurantImage;
+        this.restaurant = restaurant;
         this.date = date;
         this.people = people;
         this.time = time;
     }
 
+
     public ReservationResponse() {
+
     }
 
     public int getTablesLeft() {
@@ -55,27 +53,27 @@ public class ReservationResponse {
     }
 
     public Long getRestaurantId() {
-        return restaurantId;
+        return restaurant.getId();
     }
 
     public void setRestaurantId(Long restaurantId) {
-        this.restaurantId = restaurantId;
+       this.restaurant.setId(restaurantId);
     }
 
     public String getRestaurantName() {
-        return restaurantName;
+        return restaurant.getName();
     }
 
     public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+        this.restaurant.setName(restaurantName);
     }
 
     public String getRestaurantImage() {
-        return restaurantImage;
+        return restaurant.getImage();
     }
 
     public void setRestaurantImage(String restaurantImage) {
-        this.restaurantImage = restaurantImage;
+        this.restaurant.setImage(restaurantImage);
     }
 
     public Date getDate() {
