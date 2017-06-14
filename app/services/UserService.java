@@ -22,6 +22,7 @@ import repository.UserRepository;
 
 import javax.inject.Inject;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.UUID;
 
 import static play.mvc.Results.badRequest;
@@ -108,5 +109,9 @@ public class UserService implements BaseService {
 
             return null;
         }
+    }
+
+    public List getAllUsers() {
+        return userRepository.findAll();
     }
 }

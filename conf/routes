@@ -30,3 +30,11 @@ GET     /api/v1/getAllCategories             @controllers.RestaurantsController.
 POST    /api/v1/getRestaurantMenu            @controllers.RestaurantsController.getRestaurantMenu
 PUT     /api/v1/rateRestaurantByPrice        @controllers.RestaurantsController.rateRestaurantByPrice
 PUT     /api/v1/rateRestaurantWithStars      @controllers.RestaurantsController.rateRestaurantWithStars
+
+
+GET     /api/v1/admin/getAdministrationCounters @controllers.AdminController.getAdminCounters
+POST    /api/v1/admin/addLocation               @controllers.AdminController.addLocation
+PUT     /api/v1/admin/editLocation              @controllers.AdminController.editLocation
+POST    /api/v1/admin/deleteLocation            @controllers.AdminController.deleteLocation
+POST    /api/v1/admin/getLocationDetails        @controllers.AdminController.getLocationDetails
+
