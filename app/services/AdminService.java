@@ -1,5 +1,6 @@
 package services;
 
+import models.AppUser;
 import models.Category;
 import models.Location;
 import models.Restaurant;
@@ -90,5 +91,21 @@ public class AdminService implements BaseService {
 
     public void deleteRestaurant(Long id) {
         restaurantService.deleteRestaurant(id);
+    }
+
+    public AppUser addUser(AppUser user) {
+        return userService.saveUser(user);
+    }
+
+    public AppUser editUser(AppUser user) {
+        return userService.updateUser(user);
+    }
+
+    public void deleteUser(Long id) {
+        userService.deleteUser(id);
+    }
+
+    public AppUser getUserDetails(Long id){
+        return userService.getUserDetails(id);
     }
 }

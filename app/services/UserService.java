@@ -19,6 +19,7 @@ import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
 import repository.UserRepository;
+import scala.App;
 
 import javax.inject.Inject;
 import java.io.UnsupportedEncodingException;
@@ -113,5 +114,19 @@ public class UserService implements BaseService {
 
     public List getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public AppUser updateUser(AppUser user) {
+        return userRepository.update(user);
+    }
+
+    public void deleteUser(Long id) {
+        AppUser user = userRepository.findById(id);
+        userRepository.delete(user);
+    }
+
+    public AppUser getUserDetails(Long id){
+        AppUser user = userRepository.findById(id);
+        return user;
     }
 }

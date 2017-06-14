@@ -47,3 +47,7 @@ POST    /api/v1/admin/addRestaurant             @controllers.AdminController.add
 PUT     /api/v1/admin/editRestaurant            @controllers.AdminController.editRestaurant
 POST    /api/v1/admin/deleteRestaurant          @controllers.AdminController.deleteRestaurant
 
+POST    /api/v1/admin/addUser                   @controllers.AdminController.addUser
+PUT     /api/v1/admin/editUser                  @controllers.AdminController.editUser
+POST    /api/v1/admin/deleteUser                @controllers.AdminController.deleteUser
+POST    /api/v1/admin/getUserDetails            @controllers.AdminController.getUserDetails
