@@ -46,4 +46,15 @@ public class RestaurantService implements BaseService{
     public List getAllCategories() {
         return categoryService.getAllCategories();
     }
+
+    public Restaurant rateRestaurantByPrice(Restaurant restaurant, int vote) {
+        restaurant.setPriceRange(restaurant.getPriceRange() + vote);
+        restaurant.setPriceVotes(restaurant.getPriceVotes()+ 1 );
+        return restaurantRepository.update(restaurant);
+    }
+    public Restaurant rateRestaurantWithStars(Restaurant restaurant, int vote) {
+        restaurant.setStarRate(restaurant.getStarRate() + vote);
+        restaurant.setStarVotes(restaurant.getStarVotes()+ 1 );
+        return restaurantRepository.update(restaurant);
+    }
 }

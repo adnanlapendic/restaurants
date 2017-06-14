@@ -28,3 +28,5 @@ GET     /api/v1/getListOfReservationsForUser @controllers.ReservationController.
 GET     /api/v1/getFreeTables                @controllers.ReservationController.getFreeTables
 GET     /api/v1/getAllCategories             @controllers.RestaurantsController.getAllCategories
 POST    /api/v1/getRestaurantMenu            @controllers.RestaurantsController.getRestaurantMenu
+PUT     /api/v1/rateRestaurantByPrice        @controllers.RestaurantsController.rateRestaurantByPrice
+PUT     /api/v1/rateRestaurantWithStars      @controllers.RestaurantsController.rateRestaurantWithStars

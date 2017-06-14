@@ -77,4 +77,27 @@ public class RestaurantsController extends Controller {
         return ok(Json.toJson(menuList));
     }
 
+    @Transactional
+    public Result rateRestaurantByPrice() {
+        Form<RestaurantMenu> boundForm = RestaurantMenu.menuForm.bindFromRequest();
+        Long id = Long.valueOf(boundForm.data().get("restaurant"));
+        Restaurant restaurant = restaurantService.getRestaurantById(id);
+        int vote = Integer.valueOf(boundForm.data().get("vote"));
+
+        restaurantService.rateRestaurantByPrice(restaurant, vote);
+        return ok(Json.toJson(Response.succsessResponse("You have successfully rated the restaurant")));
+    }
+
+    @Transactional
+    public Result rateRestaurantWithStars() {
+        Form<RestaurantMenu> boundForm = RestaurantMenu.menuForm.bindFromRequest();
+        Long id = Long.valueOf(boundForm.data().get("restaurant"));
+        Restaurant restaurant = restaurantService.getRestaurantById(id);
+        int vote = Integer.valueOf(boundForm.data().get("vote"));
+        restaurantService.rateRestaurantWithStars(restaurant, vote);
+        return ok(Json.toJson(Response.succsessResponse("You have successfully rated the restaurant")));
+
+
+    }
+
 }
