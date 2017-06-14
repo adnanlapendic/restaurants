@@ -15,10 +15,16 @@ import java.util.List;
 public class RestaurantService implements BaseService{
 
     private RestaurantRepository restaurantRepository;
+    private CategoryService categoryService;
 
     @Inject
     public void setRestaurantRepository(RestaurantRepository restaurantRepository) {
         this.restaurantRepository = restaurantRepository;
+    }
+
+    @Inject
+    public void setCategoryService(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
 
@@ -37,4 +43,7 @@ public class RestaurantService implements BaseService{
         return restaurantRepository.findById(restaurantId);
     }
 
+    public List getAllCategories() {
+        return categoryService.getAllCategories();
+    }
 }

@@ -26,3 +26,5 @@ POST    /api/v1/restaurants/:id/checkReservationAvailability    @controllers.Res
 POST    /api/v1/restaurants/:id/makeReservation              @controllers.ReservationController.makeReservation(id: Long)
 GET     /api/v1/getListOfReservationsForUser @controllers.ReservationController.getListOfReservationsForUser
 GET     /api/v1/getFreeTables                @controllers.ReservationController.getFreeTables
+GET     /api/v1/getAllCategories             @controllers.RestaurantsController.getAllCategories
+POST    /api/v1/getRestaurantMenu            @controllers.RestaurantsController.getRestaurantMenu
