@@ -1,5 +1,7 @@
 package models;
 
+import play.data.Form;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,6 +11,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class Category {
+
+    public static Form<Category> categoryForm = Form.form(Category.class);
+
     @Id
     @GeneratedValue
     private Long id;

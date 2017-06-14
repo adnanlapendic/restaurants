@@ -38,3 +38,8 @@ PUT     /api/v1/admin/editLocation              @controllers.AdminController.edi
 POST    /api/v1/admin/deleteLocation            @controllers.AdminController.deleteLocation
 POST    /api/v1/admin/getLocationDetails        @controllers.AdminController.getLocationDetails
 
+POST    /api/v1/admin/addCategory               @controllers.AdminController.addCategory
+PUT     /api/v1/admin/editCategory              @controllers.AdminController.editCategory
+POST    /api/v1/admin/deleteCategory            @controllers.AdminController.deleteCategory
+POST    /api/v1/admin/getCategoryDetails        @controllers.AdminController.getCategoryDetails
+
