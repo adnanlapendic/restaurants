@@ -43,3 +43,7 @@ PUT     /api/v1/admin/editCategory              @controllers.AdminController.edi
 POST    /api/v1/admin/deleteCategory            @controllers.AdminController.deleteCategory
 POST    /api/v1/admin/getCategoryDetails        @controllers.AdminController.getCategoryDetails
 
+POST    /api/v1/admin/addRestaurant             @controllers.AdminController.addRestaurant
+PUT     /api/v1/admin/editRestaurant            @controllers.AdminController.editRestaurant
+POST    /api/v1/admin/deleteRestaurant          @controllers.AdminController.deleteRestaurant
+

@@ -5,6 +5,7 @@ import models.Restaurant;
 import play.Logger;
 import repository.MenuRepository;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class MenuService implements BaseService {
         this.menuRespository = menuRespository;
     }
 
-    public List getRestaurantMenu(Long restaurantId, String type) {
+    public List getMenuForSelectedRestaurant(Long restaurantId, String type){
         return menuRespository.getMenuForSelectedRestaurant(restaurantId, type);
     }
 

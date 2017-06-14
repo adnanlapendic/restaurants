@@ -21,18 +21,11 @@ import java.util.List;
 public class RestaurantsController extends Controller {
 
     private RestaurantService restaurantService;
-    private MenuService menuService;
 
     @Inject
     public void setRestaurantService(RestaurantService restaurantService) {
         this.restaurantService = restaurantService;
     }
-
-    @Inject
-    public void setMenuService(MenuService menuService) {
-        this.menuService = menuService;
-    }
-
 
     @Transactional()
     public Result getAllRestaurants(){
@@ -73,7 +66,7 @@ public class RestaurantsController extends Controller {
         String type = boundForm.data().get("type");
         Long restaurantId = Long.valueOf(boundForm.data().get("restaurant"));
 
-        List menuList = menuService.getRestaurantMenu(restaurantId, type);
+        List menuList = restaurantService.getRestaurantMenu(restaurantId, type);
         return ok(Json.toJson(menuList));
     }
 

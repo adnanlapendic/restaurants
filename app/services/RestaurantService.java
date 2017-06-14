@@ -16,6 +16,8 @@ public class RestaurantService implements BaseService{
 
     private RestaurantRepository restaurantRepository;
     private CategoryService categoryService;
+    private MenuService menuService;
+
 
     @Inject
     public void setRestaurantRepository(RestaurantRepository restaurantRepository) {
@@ -27,6 +29,10 @@ public class RestaurantService implements BaseService{
         this.categoryService = categoryService;
     }
 
+    @Inject
+    public void setMenuService(MenuService menuService) {
+        this.menuService = menuService;
+    }
 
     public List<Restaurant> getRestaurants(){
         List<Restaurant> restaurants = restaurantRepository.findAll();
@@ -56,5 +62,22 @@ public class RestaurantService implements BaseService{
         restaurant.setStarRate(restaurant.getStarRate() + vote);
         restaurant.setStarVotes(restaurant.getStarVotes()+ 1 );
         return restaurantRepository.update(restaurant);
+    }
+
+    public List getRestaurantMenu(Long restaurantId, String type) {
+        return menuService.getMenuForSelectedRestaurant(restaurantId, type);
+    }
+
+    public Restaurant saveRestaurant(Restaurant restaurant) {
+        return restaurantRepository.create(restaurant);
+    }
+
+    public Restaurant updateRestaurant(Restaurant restaurant) {
+        return restaurantRepository.update(restaurant);
+    }
+
+    public void deleteRestaurant(Long id) {
+        Restaurant restaurant = restaurantRepository.findById(id);
+        restaurantRepository.delete(restaurant);
     }
 }
