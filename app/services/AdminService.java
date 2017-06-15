@@ -1,12 +1,11 @@
 package services;
 
-import models.AppUser;
-import models.Category;
-import models.Location;
-import models.Restaurant;
+import javafx.scene.control.Tab;
+import models.*;
 
 import javax.inject.Inject;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +17,7 @@ public class AdminService implements BaseService {
     private LocationService locationService;
     private UserService userService;
     private CategoryService categoryService;
+    private TableService tableService;
 
     @Inject
     public void setRestaurantService(RestaurantService restaurantService) {
@@ -37,6 +37,11 @@ public class AdminService implements BaseService {
     @Inject
     public void setCategoryService(CategoryService categoryService) {
         this.categoryService = categoryService;
+    }
+
+    @Inject
+    public void setTableService(TableService tableService) {
+        this.tableService = tableService;
     }
 
     public Map getAdminCounters() {
@@ -107,5 +112,21 @@ public class AdminService implements BaseService {
 
     public AppUser getUserDetails(Long id){
         return userService.getUserDetails(id);
+    }
+
+    public List getAllTables(Restaurant restaurant) {
+        return tableService.getAllTables(restaurant);
+    }
+
+    public RestaurantTable addTable(RestaurantTable table){
+        return tableService.saveTable(table);
+    }
+
+    public RestaurantTable editTable(RestaurantTable table) {
+        return tableService.updateTable(table);
+    }
+
+    public void deleteTable(Long id) {
+        tableService.deleteRestaurantTable(id);
     }
 }

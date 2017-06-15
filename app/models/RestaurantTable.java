@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.jpa.HibernateEntityManager;
+import play.data.Form;
 import play.db.jpa.JPA;
 
 import javax.persistence.Column;
@@ -19,6 +20,8 @@ import java.util.List;
 
 @Entity
 public class RestaurantTable {
+
+    public static Form<RestaurantTable> tableForm = Form.form(RestaurantTable.class);
 
     @Id
     @GeneratedValue

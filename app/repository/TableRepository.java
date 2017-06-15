@@ -1,5 +1,6 @@
 package repository;
 
+import models.Restaurant;
 import models.RestaurantTable;
 import org.hibernate.criterion.Restrictions;
 
@@ -18,5 +19,9 @@ public class TableRepository extends RepositoryImplementation<RestaurantTable> {
 
     }
 
+    public List getAllRestaurantTable(Restaurant restaurant) {
+        return getCriteria()
+                .add(Restrictions.eq("restaurantId", restaurant.getId())).list();
+    }
 
 }

@@ -29,4 +29,21 @@ public class TableService implements BaseService {
         return tableRepository.findById(id);
     }
 
+    public List getAllTables(Restaurant restaurant) {
+        return tableRepository.getAllRestaurantTable(restaurant);
+    }
+
+    public RestaurantTable saveTable(RestaurantTable table) {
+        return tableRepository.create(table);
+    }
+
+    public RestaurantTable updateTable(RestaurantTable table) {
+        return tableRepository.update(table);
+    }
+
+    public void deleteRestaurantTable(Long id) {
+        RestaurantTable table = tableRepository.findById(id);
+        tableRepository.delete(table);
+    }
+
 }

@@ -144,4 +144,33 @@ public class AdminController extends Controller {
        return ok(Json.toJson(adminService.getUserDetails(id)));
    }
 
+   @Transactional
+    public Result getAllRestaurnatTables() {
+       Form<Restaurant> boundForm = Restaurant.restaurantForm.bindFromRequest();
+       Restaurant restaurant = boundForm.get();
+       return ok(Json.toJson(adminService.getAllTables(restaurant)));
+   }
+
+   @Transactional
+    public Result addRestaurntTable() {
+       Form<RestaurantTable> boundForm = RestaurantTable.tableForm.bindFromRequest();
+        RestaurantTable table = boundForm.get();
+        return ok(Json.toJson(adminService.addTable(table)));
+   }
+
+   @Transactional
+    public Result editTable() {
+       Form<RestaurantTable> boundForm = RestaurantTable.tableForm.bindFromRequest();
+       RestaurantTable table = boundForm.get();
+       return ok(Json.toJson(adminService.editTable(table)));
+   }
+
+   @Transactional
+    public Result deleteTable() {
+       Form<RestaurantTable> boundForm = RestaurantTable.tableForm.bindFromRequest();
+       Long id = Long.valueOf(boundForm.data().get("id"));
+       adminService.deleteTable(id);
+       return ok(Json.toJson(Response.succsessResponse("Table successfully deleted.")));
+   }
+
 }
