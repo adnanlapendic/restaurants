@@ -40,7 +40,7 @@ public class RepositoryImplementation<T> implements Repository<T> {
 
     @Override
     public void delete(T model) {
-        JPA.em().persist(model);
+        JPA.em().remove(model);
         JPA.em().flush();
     }
 
@@ -49,7 +49,6 @@ public class RepositoryImplementation<T> implements Repository<T> {
         return session.createCriteria(getEntityClass());
     }
 
-    @Override
     public List<T> findAll() {
         return getCriteria().list();
     }

@@ -15,11 +15,44 @@
 
 
 #API
-GET     /api/v1/restaurant             @controllers.RestaurantsController.getAllRestaurants
-POST    /api/v1/login                  @controllers.UserController.login
-POST    /api/v1/register               @controllers.UserController.registerNewUser
-GET     /api/v1/getRestaurantsLocations @controllers.RestaurantsController.getNumberOfRestaurantsPerCity
-POST    /api/v1/getRestaurantDetails   @controllers.RestaurantsController.getRestaurantDetails
-GET     /api/v1/currentUser            @controllers.UserController.getCurrentUser
-GET     /api/v1/logout                 @controllers.UserController.clearSession
-POST    /api/v1/checkForReservation    @controllers.ReservationController.checkForTable
+GET     /api/v1/restaurant                   @controllers.RestaurantsController.getAllRestaurants
+POST    /api/v1/login                        @controllers.UserController.login
+POST    /api/v1/register                     @controllers.UserController.registerNewUser
+GET     /api/v1/getRestaurantsLocations      @controllers.RestaurantsController.getNumberOfRestaurantsPerCity
+POST    /api/v1/getRestaurantDetails         @controllers.RestaurantsController.getRestaurantDetails
+GET     /api/v1/currentUser                  @controllers.UserController.getCurrentUser
+GET     /api/v1/logout                       @controllers.UserController.clearSession
+POST    /api/v1/restaurants/:id/checkReservationAvailability    @controllers.ReservationController.checkForTable(id: Long)
+POST    /api/v1/restaurants/:id/makeReservation              @controllers.ReservationController.makeReservation(id: Long)
+GET     /api/v1/getListOfReservationsForUser @controllers.ReservationController.getListOfReservationsForUser
+GET     /api/v1/getFreeTables                @controllers.ReservationController.getFreeTables
+GET     /api/v1/getAllCategories             @controllers.RestaurantsController.getAllCategories
+POST    /api/v1/getRestaurantMenu            @controllers.RestaurantsController.getRestaurantMenu
+PUT     /api/v1/rateRestaurantByPrice        @controllers.RestaurantsController.rateRestaurantByPrice
+PUT     /api/v1/rateRestaurantWithStars      @controllers.RestaurantsController.rateRestaurantWithStars
+
+
+GET     /api/v1/admin/getAdministrationCounters @controllers.AdminController.getAdminCounters
+POST    /api/v1/admin/addLocation               @controllers.AdminController.addLocation
+PUT     /api/v1/admin/editLocation              @controllers.AdminController.editLocation
+POST    /api/v1/admin/deleteLocation            @controllers.AdminController.deleteLocation
+POST    /api/v1/admin/getLocationDetails        @controllers.AdminController.getLocationDetails
+
+POST    /api/v1/admin/addCategory               @controllers.AdminController.addCategory
+PUT     /api/v1/admin/editCategory              @controllers.AdminController.editCategory
+POST    /api/v1/admin/deleteCategory            @controllers.AdminController.deleteCategory
+POST    /api/v1/admin/getCategoryDetails        @controllers.AdminController.getCategoryDetails
+
+POST    /api/v1/admin/addRestaurant             @controllers.AdminController.addRestaurant
+PUT     /api/v1/admin/editRestaurant            @controllers.AdminController.editRestaurant
+POST    /api/v1/admin/deleteRestaurant          @controllers.AdminController.deleteRestaurant
+
+POST    /api/v1/admin/addUser                   @controllers.AdminController.addUser
+PUT     /api/v1/admin/editUser                  @controllers.AdminController.editUser
+POST    /api/v1/admin/deleteUser                @controllers.AdminController.deleteUser
+POST    /api/v1/admin/getUserDetails            @controllers.AdminController.getUserDetails
+
+POST    /api/v1/admin/getAllRestaurantTables          @controllers.AdminController.getAllRestauranatTables
+POST    /api/v1/admin/addRestaurntTable               @controllers.AdminController.addRestaurntTable
+PUT     /api/v1/admin/editTable                       @controllers.AdminController.editTable
+POST    /api/v1/admin/deleteTable                     @controllers.AdminController.deleteTable

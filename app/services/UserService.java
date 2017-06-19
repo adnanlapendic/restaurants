@@ -2,6 +2,7 @@ package services;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.google.inject.Singleton;
 import models.AppUser;
 import models.Login;
 import models.Response;
@@ -18,9 +19,11 @@ import play.libs.Json;
 import play.mvc.Http;
 import play.mvc.Result;
 import repository.UserRepository;
+import scala.App;
 
 import javax.inject.Inject;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.UUID;
 
 import static play.mvc.Results.badRequest;
@@ -30,6 +33,7 @@ import static play.mvc.Results.unauthorized;
 /**
  * Created by lapa on 5/17/17.
  */
+@Singleton
 public class UserService implements BaseService {
 
     private UserRepository userRepository;
@@ -50,11 +54,11 @@ public class UserService implements BaseService {
 
     public AppUser getCurrentUser() {
         Http.Context ctx = Http.Context.current();
-        String email = ctx.session().get("email");
+        String token = "dca14341-9035-43f7-8b0b-2f3fa8f52110";
         AppUser user = null;
 
-        if (email != null) {
-            user = userRepository.findUserByEmail(email);
+        if (token != null) {
+            user = userRepository.findUserByToken(token);
         }
         if (user == null) {
             return null;
@@ -106,5 +110,23 @@ public class UserService implements BaseService {
 
             return null;
         }
+    }
+
+    public List getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public AppUser updateUser(AppUser user) {
+        return userRepository.update(user);
+    }
+
+    public void deleteUser(Long id) {
+        AppUser user = userRepository.findById(id);
+        userRepository.delete(user);
+    }
+
+    public AppUser getUserDetails(Long id){
+        AppUser user = userRepository.findById(id);
+        return user;
     }
 }

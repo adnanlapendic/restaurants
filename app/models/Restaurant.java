@@ -65,6 +65,13 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurantId")
     private List<RestaurantTable> tables;
 
+    private int price_votes;
+
+    private int price_range;
+
+    private int star_votes;
+
+    private int star_rate;
 
     public Long getId() {
         return id;
@@ -154,6 +161,36 @@ public class Restaurant {
         this.tables = tables;
     }
 
+    public int getPriceVotes() {
+        return price_votes;
+    }
 
+    public void setPriceVotes(int priceVotes) {
+        this.price_votes = priceVotes;
+    }
+
+    public int getPriceRange() {
+        return price_range;
+    }
+
+    public void setPriceRange(int priceRange) {
+        this.price_range = priceRange;
+    }
+
+    public int getStarVotes() {
+        return star_votes;
+    }
+
+    public void setStarVotes(int starVotes) {
+        this.star_votes = starVotes;
+    }
+
+    public int getStarRate() {
+        return star_rate;
+    }
+
+    public void setStarRate(int starRate) {
+        this.star_rate = starRate;
+    }
 }
 

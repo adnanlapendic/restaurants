@@ -3,6 +3,7 @@ package models;
 import play.data.Form;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -16,25 +17,23 @@ public class ReservationResponse {
 
     private int tablesLeft;
     private List<String> bestTime;
-    private int restaurantId;
-    private String restaurantName;
-    private String restaurantImage;
-    private Date date;
+    private Restaurant restaurant;
+    private Timestamp date;
     private int people;
     private String time;
 
-    public ReservationResponse(int tablesLeft, List<String> bestTime, int restaurantId, String restaurantName, String restaurantImage, Date date, int people, String time) {
+    public ReservationResponse(int tablesLeft, List<String> bestTime, Timestamp date, int people, String time, Restaurant restaurant) {
         this.tablesLeft = tablesLeft;
         this.bestTime = bestTime;
-        this.restaurantId = restaurantId;
-        this.restaurantName = restaurantName;
-        this.restaurantImage = restaurantImage;
+        this.restaurant = restaurant;
         this.date = date;
         this.people = people;
         this.time = time;
     }
 
+
     public ReservationResponse() {
+
     }
 
     public int getTablesLeft() {
@@ -53,35 +52,35 @@ public class ReservationResponse {
         this.bestTime = bestTime;
     }
 
-    public int getRestaurantId() {
-        return restaurantId;
+    public Long getRestaurantId() {
+        return restaurant.getId();
     }
 
-    public void setRestaurantId(int restaurantId) {
-        this.restaurantId = restaurantId;
+    public void setRestaurantId(Long restaurantId) {
+       this.restaurant.setId(restaurantId);
     }
 
     public String getRestaurantName() {
-        return restaurantName;
+        return restaurant.getName();
     }
 
     public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+        this.restaurant.setName(restaurantName);
     }
 
     public String getRestaurantImage() {
-        return restaurantImage;
+        return restaurant.getImage();
     }
 
     public void setRestaurantImage(String restaurantImage) {
-        this.restaurantImage = restaurantImage;
+        this.restaurant.setImage(restaurantImage);
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

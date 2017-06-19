@@ -3,6 +3,9 @@ package models;
 import play.data.Form;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * Created by lapa on 5/2/17.
@@ -11,13 +14,15 @@ import javax.persistence.*;
 @Entity
 public class Reservation {
 
-    public static Form<Reservation> restaurantForm = Form.form(Reservation.class);
-
+    public static Form<Reservation> reservationForm = Form.form(Reservation.class);
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
-    private Integer id;
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name="restaurant_id", referencedColumnName = "id")
+    private Restaurant restaurant;
 
     @ManyToOne
     @JoinColumn(name = "table_id", referencedColumnName = "id")
@@ -27,25 +32,33 @@ public class Reservation {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser user;
 
-    @Column(name = "time_of_reservation")
-    private String timeOfReservation;
+    @Transient
+    private int number_of_people;
 
-    @Column(name = "date_of_reservation")
-    private String dateOfReservation;
+    @Transient
+    private String time;
 
-    public Integer getId() {
+    private String date;
+
+    private Long reservations_start;
+
+    private Long reservation_ends;
+
+    private boolean isReserved;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public RestaurantTable getRestaurant() {
+    public RestaurantTable getRestaurantTable() {
         return table;
     }
 
-    public void setRestaurant(RestaurantTable table) {
+    public void setRestaurantTable(RestaurantTable table) {
         this.table = table;
     }
 
@@ -57,19 +70,59 @@ public class Reservation {
         this.user = user;
     }
 
-    public String getTimeOfReservation() {
-        return timeOfReservation;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setTimeOfReservation(String timeOfReservation) {
-        this.timeOfReservation = timeOfReservation;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public String getDateOfReservation() {
-        return dateOfReservation;
+    public Long getReservationsStart() {
+        return reservations_start;
     }
 
-    public void setDateOfReservation(String dateOfReservation) {
-        this.dateOfReservation = dateOfReservation;
+    public void setReservationsStart(Long reservationsStart) {
+        this.reservations_start = reservationsStart;
+    }
+
+    public Long getReservationEnds() {
+        return reservation_ends;
+    }
+
+    public void setReservationEnds(Long reservationEnds) {
+        this.reservation_ends = reservationEnds;
+    }
+
+    public boolean isReserved() {
+        return isReserved;
+    }
+
+    public void setReserved(boolean reserved) {
+        isReserved = reserved;
+    }
+
+    public int getNumberOfPeople() {
+        return number_of_people;
+    }
+
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.number_of_people = numberOfPeople;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

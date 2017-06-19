@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.jpa.HibernateEntityManager;
+import play.data.Form;
 import play.db.jpa.JPA;
 
 import javax.persistence.Column;
@@ -20,31 +21,32 @@ import java.util.List;
 @Entity
 public class RestaurantTable {
 
+    public static Form<RestaurantTable> tableForm = Form.form(RestaurantTable.class);
+
     @Id
     @GeneratedValue
     @Column(name="id")
-    private Integer id;
+    private Long id;
 
     @Column(name="restaurant_id")
-    private Integer restaurantId;
+    private Long restaurantId;
 
     @Column(name="num_of_chairs")
     private Integer numberOfChairs;
 
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getRestaurantId() {
+    public Long getRestaurantId() {
         return restaurantId;
     }
 
-    public void setRestaurantId(Integer restaurantId) {
+    public void setRestaurantId(Long restaurantId) {
         this.restaurantId = restaurantId;
     }
 
@@ -56,21 +58,4 @@ public class RestaurantTable {
         this.numberOfChairs = numberOfChairs;
     }
 
-
-    public static Session getSession(){
-        Session session = ((HibernateEntityManager) JPA.em()).getSession();
-        return session;
-    }
-
-
-    public static Criteria getCriteria(){
-        Session session = getSession();
-        return session.createCriteria(RestaurantTable.class);
-    }
-
-    public static List<RestaurantTable> getTables(int restaurantId, int numberOfPeople) {
-       List<RestaurantTable> tables = getCriteria().add(Restrictions.eq("restaurantId", restaurantId))
-               .add(Restrictions.ge("numberOfChairs", numberOfPeople)).list();
-       return tables;
-    }
 }

@@ -18,6 +18,6 @@ public interface Repository<T> {
 
     void delete(T model);
 
-    List<T> findAll();
+//    List<T> findAll(T model);
 
 }
